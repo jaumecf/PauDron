@@ -6,10 +6,19 @@ public class PlayerMove : MonoBehaviour
 {
     float hInput, vInput;
     Rigidbody playerRb;
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveSpeed = 20f;
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+    }
+
+    void OnTriggerEnter(Collider col) {
+        if(col.gameObject.tag=="pasarObstaculo"){
+            //myRB.AddForce(Vector3.up*jumpSpeed);
+            GameObject.Find("SceneManager").GetComponent<SceneManager>().pasaObstaculo();
+            
+        } 
+
     }
 
     // Update is called once per frame
