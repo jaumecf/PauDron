@@ -20,8 +20,9 @@ public class PilotaManager : MonoBehaviour
         
     }
     void OnCollisionEnter(Collision col) {
-        
-        if(col.gameObject.tag=="Ground"){
+        Debug.Log("Colisio: ");
+
+        if (col.gameObject.tag=="Ground"){
             //myRB.AddForce(Vector3.up*jumpSpeed);
             Vector3 point = Quaternion.AngleAxis(initialAngle, Vector3.up) * dirMov;
             myRB.AddForce(point+Vector3.up*jumpSpeed*Random.Range(0.7f,1.5f));
