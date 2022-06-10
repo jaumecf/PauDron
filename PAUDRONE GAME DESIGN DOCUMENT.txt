@@ -1,0 +1,268 @@
+﻿PAUDRONE GAME DESIGN DOCUMENT
+
+
+Game Name:
+PAUDRONE
+
+
+Genere:
+Simulator
+
+
+Game Elements: 
+Game elements are the basic activities the player will be doing for fun
+
+
+Player: 1
+The number of players that can play the game at once
+
+
+TECHNICAL SPECS
+
+
+Technical Form: ja que hi som 3D no?
+Basically there are 2D graphics (flat) and 3D graphics (form)
+
+
+View:
+Camera view from which the player will experience the game
+
+
+Platform:
+PC i WebGL
+
+
+Language:
+C#
+
+
+Device:
+PC
+
+
+GAME PLAY
+Use the game play section to create a descriptive paragraph about how the game is played. You want the use tor imagine
+they are actually playing the game. Try not to use generic (i.e., broad, non-descriptive) terms when writing about the game
+play. For example, few readers want to hear statements such as, “enemy_1 will have more hit points than
+enemy_2.” Instead, it’s better to make statements like, “The Lazarus Fighter has more armour than the Apollo Fighter.”
+
+
+Game Play Outline
+This outline will vary depending on the type of game.
+• Opening the game application
+• Game options
+• Story synopsis
+• Modes
+• Game elements
+• Game levels
+• Player’s controls
+• Winning
+• Losing
+• End
+• Why is all this fun?
+
+
+Key Features
+Key features are a list of game elements that are attractive to the player.
+
+
+DESIGN DOCUMENT
+This document describes how GameObjects behave, how they’re controlled and their properties. This is often referred to as
+the “mechanics” of the game. This documentation is primarily concerned with
+the game itself. This part of the document is meant to be modular, meaning you could have
+several different Game Design Documents attached to the Concept Document.
+
+
+Design Guidelines
+This is an important statement about any creative restrictions that need to be considered and includes brief statements
+about the general (i.e., overall) goal of the design.
+
+
+Game Design Definitions
+This section established the definition of the game play. Definitions should include how a player wins, loses, transitions
+between levels, and the main focus of the gameplay.
+
+
+Game Flowchart
+The game flowchart provides a visual of how the different game elements and their properties interact. Game flowcharts
+should represent Objects, Properties, and Actions present in the game. Each of these items should have a number reference
+to where they exist within the game mechanics document.
+• Menu
+• Synopsis
+• Game Play
+• Player Control
+• Game Over (Winning and Losing
+
+
+Player Definition
+● Use this section for quick descriptions that define the player
+● Use the Player Properties section (below) to define the properties for each player. Player Properties can be
+affected by the player’s action or interaction with other game elements. Define the properties and how they affect
+the player’s current game.
+● Use the Player Rewards section to make a list of all objects that affect the player in a positive way. Define these
+objects by describing what affect they cause and how the player can use the object.
+
+
+Player Definitions
+A suggested list may include:
+• Health
+• Weapons
+• Actions
+
+
+Player Properties
+Each property should mention a feedback as a result of the property changing.
+
+
+Player Rewards (power-ups and pick-ups)
+Make a list of all objects that affect the player in a positive way (e.g., health replenished)
+
+
+User Interface (UI)
+This is where you’ll include a description of the user’s control of the game. Think about which buttons on a device would be
+best suited for the game. Consider what the worst layout is, then ask yourself if your UI is it still playable. A visual
+representation can be added where you relate the physical controls to the actions in the game. When designing the UI, it may
+be valuable to research quality control and user interface (UI) design information
+
+
+
+
+
+
+Control del drone
+WASDQE
+Inèrcia
+Inicialment com al FPS
+Rotar X MouseInput
+
+
+Obstacles
+Colliders
+
+
+Donuts
+Tubs
+Fixos i movibles
+
+
+Muerte del dron
+Vida 100% i si xoca descompta x. Quan arabia 0 pierde.
+Tenim en compte també un % de bateria? Per exemple quan s’acabi tmb perd? 
+
+
+
+
+Guanya
+
+
+Temporitzador
+Comptar temps en que resol el circuit
+Leaderboard amb temps
+
+
+Enemics
+Pelotas asesinas
+Enemic que ens persegueix i si xoca amb nosaltres ens quita vida i ell muere.
+
+
+Nivells de dificultat?
+
+
+
+
+
+
+Scenes
+Menu principal - Canvas amb boton per jugar, sortir, opcions, scores.
+Nivell 1
+Nivell 2
+Game Over - Canvas amb score personal, insert coin, sortir, jugar again.
+
+
+Assets
+* Primitives
+* Skybox (foto del pati del insti - camera 360)
+* Drone (demanar a JC els models 3D) o escanejar dron jxxx
+   * Efecte rotacio a las helices motors.
+* Helices
+
+
+Efectos de sonido:
+* Musica de joc: LevelMusic
+* Musica de menú: MenuMusic
+* Musica final de nivell: SuccessMusic
+* Dron encés: 2747 a l’start
+* dron accelera (endavant): 2748
+* dron marxa enrere: 2744
+* Dron puja: endavant augmentant pitch
+* Dron baixa: endavant disminuint pitch
+* Collisions amb obstacles: 
+
+
+Efectos visuales (particle systems)
+
+
+Scripts
+PlayerMove
+LevelManager - control dels waypoints per on ha de passar el dron.
+ObstacleAnimation - moviment, rotacio
+EnemySpawner - Generar pilotes random que boten. Que surtin cap al player.
+PlayerHealth - Quitar vida al jugador quan colisioni
+Temporitzador - Quan arribi a 0, perd nivell. Tb conta el temps en que resolvem el circuit.
+GameManager - singleton o DontDestroyOnLoad, persistencia a totes les escenes.
+
+
+Tasques
+Crear projecte amb escena Nivell 1
+Crear escenas menu (Main menu)
+
+
+Xisca
+* PlayerMove
+* Efectes de so
+
+
+
+
+José Luís
+Obstacles i pilotes
+FUNCIONAMENT PILOTA
+Rebota quan xoca amb les parets sense Tag
+El “ground” ha de tenir aquest tag per rebotar amb un força aleatòria
+
+
+FUNCIONAMENT OBSTACLES
+Des del GameManager s’han d’activar els colliders de color groc per indicar l’obstacle
+
+
+
+
+Jaume
+* Crear repo a github, inicialitzat i afegir-nos com a colaboradors - killerxenemo, avf@paucasesnovescifp.cat, spdvi.
+   * .gitignore Unity
+   * Versió editor unity 2021.3.2f1
+* Menú inici? M’hauras d’explicar com funciona això de GameManager
+* Canvas de UI, bateria, temporitzador, 
+
+
+GameManager - 
+
+
+
+
+Mides del environment
+Midel del drone 2x2x0.5
+Mides dels obstacles
+
+
+TOTS:
+Clone el repository a una carpeta local.
+Pull
+Git add xx, sdf, cv
+
+
+Commits
+
+
+Pull
+push
