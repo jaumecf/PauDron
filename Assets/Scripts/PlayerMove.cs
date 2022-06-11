@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    float hInput, vInput, deltaX, deltaY;
+    float hInput, vInput, deltaX;
     Rigidbody playerRb;
-    [SerializeField] float moveSpeed = 20f;
-    [SerializeField] float rotateSpeed = 1f;
+    [SerializeField]float moveSpeed = 20f;
+    float rotateSpeed = 1f;
+    private SoundManager soundManager;
 
     // Variables Bateria
     float batteryCharge;
@@ -21,6 +22,9 @@ public class PlayerMove : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         batteryCharge = 100.0f;    // Carregat 100%
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        soundManager.PlayFX(SoundManager.FXSounds.ENCES_FX);
+
     }
 
     void OnTriggerEnter(Collider col) {
@@ -28,7 +32,7 @@ public class PlayerMove : MonoBehaviour
             //myRB.AddForce(Vector3.up*jumpSpeed);
             GameObject.Find("SceneManager").GetComponent<SceneManager>().pasaObstaculo();
             
-        } 
+        }
     }
 
     // Update is called once per frame
@@ -39,13 +43,31 @@ public class PlayerMove : MonoBehaviour
 
         playerRb.MovePosition(transform.position + (transform.right * hInput + transform.forward * vInput) * moveSpeed * Time.deltaTime);
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            soundManager.PlayFX(SoundManager.FXSounds.ENDAVANT_FX);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            soundManager.PlayFX(SoundManager.FXSounds.ENRERA_FX);
+        } 
+        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            soundManager.PlayFX(SoundManager.FXSounds.ENCES_FX);
+        } 
+
         if (Input.GetKey(KeyCode.Q)) //eix y puja
         {
             playerRb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
+            soundManager.asFX.pitch = 2f;
         }
         else if (Input.GetKey(KeyCode.E)) //eix y baixa
         {
             playerRb.MovePosition(transform.position + transform.up * (-moveSpeed) * Time.deltaTime);
+            soundManager.asFX.pitch = 1f;
+        } else
+        {
+            soundManager.asFX.pitch = 0.5f;
         }
 
         //rota dreta i esquerra sobre eix y
@@ -55,7 +77,7 @@ public class PlayerMove : MonoBehaviour
         playerRb.MoveRotation(playerRb.rotation * rotation);
 
         //per evitar que es segueixi movent quan col·lisiona
-        if (haveInertia())
+        if (hasInertia())
         {
             Invoke("stopPlayer", 2f);
         }
@@ -75,7 +97,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private bool haveInertia ()
+    private bool hasInertia ()
     {
         if (Mathf.Abs(vInput) < 0.01f && Mathf.Abs(hInput) < 0.01f && Mathf.Abs(deltaX) < 0.01f && 
             !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E) && 
